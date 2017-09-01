@@ -108,7 +108,7 @@ Time Complexity
 
 -------------------------------------------------------------------------------
 
-repetitionFreeSublist(A)
+repetitionFreeSubsequence(A)
 
 Input: A, a list
 
@@ -122,7 +122,7 @@ if n = 2 then
 for i in A(0 ... n - 1)
 	for j in A(0 ... n - 1)
 		if i != j and A[i] = A[j]
-			return repetitionFreeSublist(A[0 ... n - 2])
+			return repetitionFreeSubsequence(A[0 ... n - 2])
 return A
 
 Time Complexity
@@ -130,3 +130,5 @@ Time Complexity
 	Elementary operation: conditional
 
 	Big-Theta(n^3)
+
+-------------------------------------------------------------------------------
