@@ -1,0 +1,132 @@
+fibonacci(n)
+
+Input: n, an integer
+
+if n <= 0 then
+	return 0
+if n = 1 then
+	return 1
+else
+	return fibonacci(n - 1) + fibonacci(n - 2)
+
+Time Complexity
+	Input size: n
+	Elementary operation: addition in line 24
+
+	T(n) = T(n - 1) + T(n - 2) + 1
+		 = T(n - 2) + T(n - 3) + T(n - 3) + T(n - 4) + 1
+		 = T(n - 2) + 2 T(n - 3) + T(n - 4) + 1
+		 = T(n - 3) + T(n - 4) + 2 (T(n - 4) + T(n - 5)) + T(n - 5) + T(n - 6) + 1
+		 = T(n - 3) + 3 T(n - 4) + 2 T(n - 5) + T(n - 6) + 1
+		 = T(n - n) + n(n - 1) + n(n - 2) + n(n - 3)
+
+	Big-Theta(2^n)
+
+-------------------------------------------------------------------------------
+
+fibonacci(n)
+
+Input: n, an integer
+
+if n <= 0 then
+	return 0, 0
+if n = 1 then
+	return 0, 1
+else
+	temp <- fibonacci(n - 1)
+	fib1 <- temp[1]
+	temp <- fibonacci(n - 2)
+	fib2 <- fib1 + temp[1]
+	return (fib1, fib2)
+
+Time Complexity
+	Input size: n
+	Elementary operation: addition in line 39
+
+	T(n) = T(n - 1) + T(n - 2) + 1
+		 = T(n - 2) + T(n - 3) + T(n - 3) + T(n - 4) + 1
+		 = T(n - 2) + 2 T(n - 3) + T(n - 4) + 1
+		 = T(n - 3) + T(n - 4) + 2 (T(n - 4) + T(n - 5)) + T(n - 5) + T(n - 6) + 1
+		 = T(n - 3) + 3 T(n - 4) + 2 T(n - 5) + T(n - 6) + 1
+		 = T(n - n) + n(n - 1) + n(n - 2) + n(n - 3)
+
+	Big-Theta(n!)
+
+-------------------------------------------------------------------------------
+
+fibonacci(n)
+
+Input: n, an integer
+
+if n <= 0 then
+	return 0, 0
+if n = 1 then
+	return 0, 1
+else
+	temp <- fibonacci(n - 1)
+	fib1 <- temp[1]
+	fib2 <- temp[0] + temp[1]
+	return (fib1, fib2)
+
+Time Complexity
+	Input size: n
+	Elementary operation: addition in line 68
+
+	T(n) = T(n - 1) + 1
+		 = T(n - 2) + 1 + 1
+		 = T(n - 2) + 2
+		 = T(n - 3) + 1 + 1 + 1
+		 = T(n - 3) + 3
+		 = T(n - n) + n
+
+	Big-Theta(n)
+
+-------------------------------------------------------------------------------
+
+repetitionFree(A)
+
+Input: A, a list
+
+n <- |A|
+if n = 0 or n = 1 then
+	return A
+if n = 2 then
+	if A[0] != A[1]
+		return A
+	return A[0]
+for i in A(0 ... n - 1)
+	for j in A(0 ... n - 1)
+		if i != j and A[i] = A[j]
+			return repetitionFree(A[0 ... n - 2])
+return A
+
+Time Complexity
+	Input size: n
+	Elementary operation: conditional
+
+	Big-Theta(n^3)
+
+-------------------------------------------------------------------------------
+
+repetitionFreeSublist(A)
+
+Input: A, a list
+
+n <- |A|
+if n = 0 or n = 1 then
+	return A
+if n = 2 then
+	if A[0] != A[1]
+		return A
+	return A[0]
+for i in A(0 ... n - 1)
+	for j in A(0 ... n - 1)
+		if i != j and A[i] = A[j]
+			return repetitionFreeSublist(A[0 ... n - 2])
+return A
+
+Time Complexity
+	Input size: n
+	Elementary operation: conditional
+
+	Big-Theta(n^3)
