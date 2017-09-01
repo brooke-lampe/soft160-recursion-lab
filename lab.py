@@ -20,7 +20,13 @@ def scalar_fibonacci(n):
     >>> scalar_fibonacci(35)
     9227465
     """
-    return 0  # stub
+
+    if n <= 0:
+        return 0
+    if n == 1:
+        return 1
+    else:
+        return scalar_fibonacci(n - 1) + scalar_fibonacci(n - 2)
 
 
 def vector_fibonacci(n):
@@ -43,8 +49,17 @@ def vector_fibonacci(n):
     >>> vector_fibonacci(350)
     (3865462327928467072415604609040860366007401579690263197296200323999931849, 6254449428820551641549772190170184190608177514674331726439961915653414425)
     """
-    return 0, 1  # stub
 
+
+    if n <= 0:
+        return 0, 0
+    if n == 1:
+        return 0, 1
+    else:
+        temp = vector_fibonacci(n - 1)
+        fib1 = temp[1]
+        fib2 = temp[0] + temp[1]
+        return (fib1, fib2)
 
 def maximal_repetition_free_prefix(sequence):
     """
@@ -66,8 +81,19 @@ def maximal_repetition_free_prefix(sequence):
     [3, 2, 1]
 
     """
-    return []  # stub
 
+    n = len(sequence)
+    if n == 0 or n == 1:
+        return sequence
+    if n == 2:
+        if sequence[0] != sequence[1]:
+            return sequence
+        return sequence[0:1]
+    for i in range(0, n):
+        for j in range(0, n):
+            if i != j and sequence[i] == sequence[j]:
+                return maximal_repetition_free_prefix(sequence[0:n - 1])
+    return sequence
 
 def maximal_repetition_free_subsequence(sequence):
     """
@@ -88,7 +114,21 @@ def maximal_repetition_free_subsequence(sequence):
     >>> maximal_repetition_free_subsequence([1, 2, 1, 2, 1, 2, 1])
     [2, 1]
     """
-    return []  # stub
+
+    n = len(sequence)
+    if n == 0 or n == 1:
+        return sequence
+    if n == 2:
+        if sequence[0] != sequence[1]:
+            return sequence
+        return sequence[0:1]
+    for i in range(0, n):
+        for j in range(0, n):
+            if i != j and sequence[i] == sequence[j]:
+                print 1
+                return maximal_repetition_free_prefix(sequence[1:n])
+    print 2
+    return sequence
 
 
 def maximal_repetition_free_subsequence_version_2(sequence):
