@@ -121,15 +121,12 @@ def maximal_repetition_free_subsequence(sequence):
     if n == 2:
         if sequence[0] != sequence[1]:
             return sequence
-        return sequence[0:1]
+        return sequence[1:2]
     for i in range(0, n):
         for j in range(0, n):
             if i != j and sequence[i] == sequence[j]:
-                print 1
-                return maximal_repetition_free_prefix(sequence[1:n])
-    print 2
+                return maximal_repetition_free_subsequence(sequence[1:n])
     return sequence
-
 
 def maximal_repetition_free_subsequence_version_2(sequence):
     """
