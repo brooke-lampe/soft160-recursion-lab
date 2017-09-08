@@ -178,14 +178,10 @@ def maximal_repetition_free_subsequence_version_3(sequence):
     # return []  # stub
 
     n = len(sequence)
-    if n == 0 or n == 1:
+    if n <= 1:
         return sequence
-    if n == 2:
-        if sequence[0] != sequence[1]:
-            return sequence
-        return sequence[0:1]
-    for i in range(0, n):
-        for j in range(0, n):
-            if i != j and sequence[i] == sequence[j]:
-                return maximal_repetition_free_subsequence_version_3(sequence[1:n])
-    return sequence
+
+    subsequence = maximal_repetition_free_subsequence(sequence[1:])
+    prefix = maximal_repetition_free_prefix(sequence)
+
+    return prefix if len(prefix) > len(subsequence) else subsequence
